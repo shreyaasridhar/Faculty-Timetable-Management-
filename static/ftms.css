@@ -1,37 +1,34 @@
 header, section, footer, aside, nav
 {
 display: block;}
-.header{background-color :#55b259  ;
+.header{background-color :white  ;
        
 		height:120px;
-color:white;
+color:black;
 
 font-size=200%;}
- h1{color:white;}
+ h1{color:black;}
  
 
 .header img {
   float: left;
   width: 120px;
   height: 110px;
-	border: 5px solid #1a5126;
+	border: 5px solid black;
   
 }
 .header h1 {
   position: relative;
   top: 18px;
   left: 10px;
-	color:white;
+	color:black;
 	font-size: 200%;
 	padding: 20px;
 	text-align: center;}
 				.page{
-			background-color : #1a5126;
+			background-color : black;
 			color:white;
 			}
-
-
-
 #nav {
     line-height:30px;
     padding:10px; 
@@ -43,13 +40,10 @@ font-size=200%;}
 }
 
 #footer {
-    color:white;
     clear:both;
     text-align:center;
     padding:5px;
 }
-
-
 #pic{
     
     margin-left:auto ;
@@ -58,7 +52,7 @@ font-size=200%;}
 		text-align:center;
     height:45%;
 		width:20%;
-		color:white;
+		color:black;
 		font-size: 100%;
 font-style: italic;
 font-family: Georgia, Times, serif;
@@ -99,10 +93,12 @@ li {
 aside {
 width: 280px;
 float: left;
+color:black;
 }
 aside section a {
-display: BLOCK;}
-
+display: BLOCK;
+color:black;
+}
 aside section a:hover {
 color: #079b0d;
 text-decoration: none;}
@@ -192,7 +188,7 @@ text-decoration: none;}
   color: #EF3B3A;
 }
 body {
-  background: #55b259; /* fallback for old browsers */
+  background: white; /* fallback for old browsers */
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;      
