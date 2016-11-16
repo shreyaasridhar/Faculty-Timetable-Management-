@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Timetable Management</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+  </head>
+  <body>
+
+  <header>
+    <div class="container">
+      <h1 class="logo">Faculty TimeTable Management System</h1>
+      <nav>
+        <ul class="menu">
+          <li><a href="{{ url_for('home') }}">Home</a></li>
+          <li><a href="{{ url_for('about') }}">About</a></li>
+          <li><a href="{{ url_for('login') }}">Login</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+    <div class="container">
+      {% block content %}
+      {% endblock %}
+    </div>
+<footer>
+  <p>Hosted using Flask</p>
+  <p>Contact information: <a href="mailto:shreyanju@gmail.com">
+  management@example.com</a>.</p>
+</footer>
+  </body>
+</html>
+

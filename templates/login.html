@@ -1,3 +1,6 @@
+{% extends "layout.html" %}
+{% block content %}
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
 <html>
@@ -36,16 +39,15 @@
         <br><a href=""><b>Login</a><B> </br>
         <div class="login-page">
             <div class="form">
-                <form class="register-form">
-                    <input type="text" placeholder="name"/>
-                    <input type="password" placeholder="password"/>
-                    <input type="text" placeholder="email address"/>
-                    <button>create</button>
-                    <p class="message">Already registered? <a href="#">Sign In</a></p>
-                </form>
-                <form class="login-form">
-                    <input type="text" placeholder="username"/>
-                    <input type="password" placeholder="password"/>
+                    <form method="POST" action="{{ url_for('login') }}">
+                     {{ form.hidden_tag() }}
+      
+                     {{ form.username.label }}
+                     {{ form.username }}
+      
+                     {{ form.passwd.label }}
+                     {{ form.passwd(class='passwd') }}
+                      
                     <button>login</button>
                     <p class="message">
                 </form>
@@ -58,19 +60,17 @@
     <br>
     <br>
 
-    <aside>
+    <!--aside>
         <section class="contact-details">
             <b>Any Queries:</b><BR>
             Mail us at:<a href="mailto:vedhapriya1996@gmail.com"> <b>bowmeowbow@gmail.com</b></a>
         </section>
-    </aside>
+    </aside-->
 
 
 </div>
-<div id="footer">
 
-    <p><a href="#top">TOP</a></p>
-</div>
 </div>
 </body>
 </html>
+{% endblock %}
