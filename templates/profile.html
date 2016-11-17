@@ -26,8 +26,8 @@
 <div class="page">
     <div id="nav">
         <ul>
-            <li>Faculty Name :{{name}}</li>
-            <li>Faculty id:{{id}}</li>
+            <li>Faculty Name : {{name}}</li>
+            <li>Faculty id: {{id}}</li>
     </div>
     <div id="pic">
         <b>TIME TABLE:<br><br>
@@ -93,9 +93,9 @@
 
     </div>
 
-    <button class="button button1">Swap Classes {{ swap }}</button>
-    <button class="button button2">Set Free Hour {{ free }}</button>
-    .
+    <button class="button button1" action={{url_for('swap')}}>Swap Classes</button>
+    <button class="button button2" action={{url_for('free')}}>Set Free Hour</button>
+    
 
     <!--aside>
         <section class="contact-details">

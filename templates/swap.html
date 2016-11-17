@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <h2>SWAP CLASSES</h2>
+  <form method="POST" action="{{ url_for('swapping') }}">
+    {{ form.hidden_tag() }}
+      
+    {{ form.FromDay.label }}
+    {{ form.FromDay }}
+
+    {{ form.FromPeriod.label }}
+    {{ form.FromPeriod }}
+
+    {{ form.ToDay.label }}
+    {{ form.ToDay }}
+    
+    {{ form.ToPeriod.label }}
+    {{ form.ToPeriod }}                  
+    <button>Submit</button>
+    <p class="message">
+  </form>
+{% endblock %}
