@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
 <html>
@@ -17,18 +18,13 @@
 </head>
 <body>
 <p id="top">
-<div class="header">
 
-    <img src="http://www.i3indyatechnologies.com/cybersuraksha/registration/img/amrita-university.png"
-         alt="THE AWESOME LOGO"/>
-    <h1> Faculty Timetable Management System </h1>
-</div>
 
 <div class="page">
     
     <div id="pic">
 
-        <br><a href=""><b>Login</a><B> </br>
+         <br><b>Login<B> <br>
         <div class="login-page">
             <div class="form">
                     <form method="POST" action="{{ url_for('login') }}">
@@ -45,24 +41,14 @@
                 </form>
             </div>
         </div>
-
-
-    </div>
     <br>
     <br>
     <br>
-
-    <!--aside>
-        <section class="contact-details">
-            <b>Any Queries:</b><BR>
-            Mail us at:<a href="mailto:vedhapriya1996@gmail.com"> <b>bowmeowbow@gmail.com</b></a>
-        </section>
-    </aside-->
-
-
-</div>
-
-</div>
-</body>
++<footer>
+ +  <p>Hosted using Flask</p>
+ +  <p>Contact information: <a href="mailto:shreyanju@gmail.com">
+ +  management@example.com</a>.</p>
+ +</footer>
+  </body>
 </html>
 {% endblock %}

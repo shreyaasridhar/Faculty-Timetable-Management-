@@ -26,7 +26,7 @@ def login():
    if request.method == 'POST':
     _username = request.form['username']
     n=_username
-    name=con.execute('SELECT Fac_Name FROM Faculty WHERE Fac_Name=:_username')
+    name=con.execute('SELECT Fac_Name FROM Faculty WHERE Fac_Name=:user',{'user':_username})
     if form.validate_on_submit():  # POST request with valid input?
       # Verify username and passwd
       
