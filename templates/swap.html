@@ -2,7 +2,7 @@
 
 {% block content %}
   <h2>SWAP CLASSES</h2>
-  <form method="POST" action="{{ url_for('swapping') }}">
+  <form method="POST" action="{{ url_for('swap') }}">
     {{ form.hidden_tag() }}
       
     {{ form.FromDay.label }}
@@ -13,7 +13,7 @@
 
     {{ form.ToDay.label }}
     {{ form.ToDay }}
-    
+
     {{ form.ToPeriod.label }}
     {{ form.ToPeriod }}                  
     <button>Submit</button>

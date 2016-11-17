@@ -1,5 +1,5 @@
 from flask_wtf import Form  
-from wtforms import StringField, BooleanField, TextAreaField, validators,IntegerField
+from wtforms import StringField, BooleanField, TextAreaField, validators,IntegerField,SelectField
 from wtforms.validators import InputRequired, Length
 
 class SwapForm(Form):
