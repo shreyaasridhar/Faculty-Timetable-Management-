@@ -3,7 +3,7 @@ from wtforms import StringField, BooleanField, TextAreaField, validators,Integer
 from wtforms.validators import InputRequired, Length
 
 class SwapForm(Form):
-    FromDay = StringField(u'From Day:', validators=[InputRequired(), Length(max=10)])
-    ToDay = StringField(u'To Day:', validators=[InputRequired(), Length(max=10)])
-    FromPeriod = IntegerField(u'FromPeriod:', validators=[InputRequired(), Length(max=2)])
-    ToPeriod = SelectField(u'To Period', validators.InputRequired(),choices = [('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'), ('6', '6')])
+    FromDay = SelectField(u'To Period', choices = [('1', 'Monday'), ('2', 'Tuesday'), ('3', 'Wednesday'), ('4', 'Thursday'), ('5', 'Friday')])
+    ToDay = SelectField(u'To Period', choices = [('1', 'Monday'), ('2', 'Tuesday'), ('3', 'Wednesday'), ('4', 'Thursday'), ('5', 'Friday')])
+    FromPeriod = SelectField(u'To Period', choices = [('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'), ('6', '6')])
+    ToPeriod = SelectField(u'To Period', choices = [('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'), ('6', '6')])

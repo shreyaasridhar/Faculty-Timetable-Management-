@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, flash, redirect, url_for
 from login import LoginForm
 from form import SwapForm
+from sqlalchemy.sql import text
 from sqlalchemy import create_engine, MetaData, Table
 
 
@@ -10,7 +11,7 @@ metadata = MetaData(bind=engine)
 con = engine.connect()
 #con.execute('create table Teacher (tid integer(2) primary key,name varchar(20))')
 app.config['SECRET_KEY'] = 'SECRET'  # Flask-WTF: Needed for CSRF
-n=None
+_username=""
 @app.route("/")
 def home():
   return render_template('home.html')
@@ -25,12 +26,12 @@ def login():
    form = LoginForm()
    if request.method == 'POST':
     _username = request.form['username']
-    n=_username
-    name=con.execute('SELECT Fac_Name FROM Faculty WHERE Fac_Name=:user',{'user':_username})
+    name=con.execute('SELECT Fac_Name FROM Faculty WHERE Fac_Name=%s',_username).fetchall()
+    print name
     if form.validate_on_submit():  # POST request with valid input?
       # Verify username and passwd
       
-      if (form.username.data == name and form.passwd.data == 'xxxx'):
+      if (name and form.passwd.data == 'xxxx'):
          return redirect(url_for('index',name=_username))
       else:
          # Using Flask's flash to output an error message
@@ -43,30 +44,31 @@ def login():
 
 @app.route('/profile/<name>')
 def index(name):
-    ID=con.execute('SELECT Fac_ID FROM Faculty WHERE Fac_Name=name')
+    ID=con.execute('SELECT Fac_ID FROM Faculty WHERE Fac_Name=%s',name).fetchall()
     #=con.execute('SELECT WHERE(SELECT Fac_Name FROM Faculty WHERE Fac_Name=name)')
     return render_template("profile.html",name=name,id=ID)
 
 
-@app.route('/swap', methods=['GET', 'POST'])
-def submit():
-  forms = SwapForm()
+@app.route('/profile/<name>/swap', methods=['GET', 'POST'])
+def submit(name):
+  form = SwapForm()
+  print name
   if request.method == 'POST':
     if form.validate() == False:
       flash('All fields are required.')
-      return render_template('swap.html', form=form)
+      return render_template('swap.html', name=name,form=form)
     else:
-     Fday = request.forms['FromDay']
-     Tday = request.forms['ToDay']
-     Fp = request.forms['FromPeriod']
-     Tp = request.forms['ToPeriod']
-    if form.validate_on_submit():  # POST request with valid input?
+     Fday = request.form['FromDay']
+     Tday = request.form['ToDay']
+     Fp = request.form['FromPeriod']
+     Tp = request.form['ToPeriod']
+     #if form.validate_on_submit():  # POST request with valid input?
       #con.execute('SELECT ')
       #con.execute('UPDATE ')
-      return redirect(url_for('index',name=n))#redirect(url_for('Profile.html',name=_username))
+     return redirect(url_for('index',name=name))#redirect(url_for('Profile.html',name=_username))
     
   if request.method == 'GET':
-    return render_template('swap.html', form=forms)      
+    return render_template('swap.html',name=name, form=form)      
   else:
       return "I think its Some Random HTTPMethod! :P" 
 

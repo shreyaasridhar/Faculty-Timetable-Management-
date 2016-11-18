@@ -1,0 +1,205 @@
+create table Building
+(
+Build_ID int primary key,
+Build_Name varchar(30)
+);
+
+create table Department
+(
+D_Name varchar(30) primary key,
+Budget float,
+Build_ID int,
+foreign key(Build_ID) references Building(Build_ID)
+);
+
+create table Designation
+(
+D_Name varchar(30) primary key,
+Salary float
+);
+
+create table Faculty
+(
+Fac_ID varchar(10) primary key,
+Fac_Name varchar(30),
+Dept varchar(30),
+Desg varchar(30),
+Email varchar(20),
+foreign key(Dept) references Department(D_Name),
+foreign key(Desg) references Designation(D_Name)
+);
+
+create table Section
+(
+Sec_ID varchar(10) primary key,
+Build_ID int,
+Strength int,
+foreign key(Build_ID) references Building(Build_ID)
+);
+
+create table Course(
+Course_ID varchar(10) primary key,
+Course_Name varchar(50),
+Dept varchar(30),
+Credits int,
+foreign key(Dept) references Department(D_Name)
+);
+
+create table Timings
+(
+Hour int primary key,
+Start_time varchar(10),
+End_time varchar(10)
+);
+
+create table Teaches
+(
+Teach_ID varchar(20) primary key,
+Fac_ID varchar(10),
+Course_ID varchar(10),
+Sec_ID varchar(10),
+foreign key(Fac_ID) references Faculty(Fac_ID),
+foreign key(Course_ID) references Course(Course_ID),
+foreign key(Sec_ID) references Section(Sec_ID)
+);
+
+create table Timetable
+(
+TT_ID varchar(20) primary key,
+Teach_ID varchar(20),
+Day VARCHAR(15),
+Hour int,
+foreign key (Teach_ID) references Teaches(Teach_ID),
+foreign key (Hour) references Timings(Hour)
+);
+
+
+insert into Building values(1,'A1');
+insert into Building values(2,'A2');
+insert into Building values(3,'A3');
+
+insert into Department values('CSE',80000,3);
+insert into Department values('CHEMISTRY',50000,1);
+insert into Department values('PHYSICS',60000,1);
+insert into Department values('ECE',70000,2);
+
+insert into Designation values('Assistant Professor',4000);
+insert into Designation values('Associate Professor',6000);
+
+insert into Course values('CSE300','Operating Systems','CSE',4);
+insert into Course values('CSE330','Design and Analysis of Algorithm','CSE',4);
+insert into Course values('CSE340','Database Management System','CSE',4);
+insert into Course values('CSE390','Java Programming','CSE',1);
+insert into Course values('CSE391','Database Management System lab','CSE',1);
+insert into Course values('CSE392','Operating Systems lab','CSE',1);
+insert into Course values('ECE300','Introduction to Digital Signal Processing','ECE',3);
+insert into Course values('PHY263','Concepts of Nanophysics and Nanotechnology','PHYSICS',3);
+
+insert into Faculty values('F1','Anisha','CSE','Assistant Professor','anisha@gmail.com');
+insert into Faculty values('F2','Sikha','CSE','Assistant Professor','sikha@gmail.com');
+insert into Faculty values('F3','Devi Vijayan','ECE','Assistant Professor','deviv@gmail.com');
+insert into Faculty values('M1','Sumesh','CSE','Assistant Professor','sumesh@gmail.com');
+insert into Faculty values('M2','Sudipkumar Batabyal','PHYSICS','Assistant Professor','sudip@gmail.com');
+insert into Faculty values('F7','Archanaa','CSE','Assistant Professor','archana@gmail.com');
+insert into Faculty values('F4','Archana Devi','CSE','Assistant Professor','archana@gmail.com');
+insert into Faculty values('M3','Aravinth','ECE','Assistant Professor','aravinth@gmail.com');
+insert into Faculty values('F5','Rajathilagam','CSE','Assistant Professor','raja@gmail.com');
+insert into Faculty values('F6','Karthika','PHYSICS','Assistant Professor','karthika@gmail.com');
+insert into Faculty values('M4','Govindarajan','CSE','Assistant Professor','govind@gmail.com');
+insert into Faculty values('F9','Radhika','CSE','Assistant Professor','radhika@gmail.com');
+
+insert into Section values('CSE A',3,60);
+insert into Section values('CSE B',3,61);
+
+insert into Timings values(1,'8:45am','9:45am');
+insert into Timings values(2,'9:45am','10:45am');
+insert into Timings values(3,'11:00am','12:00pm');
+insert into Timings values(4,'12:00pm','1:00pm');
+insert into Timings values(5,'2:00pm','3:00pm');
+insert into Timings values(6,'3:00pm','4:00pm');
+
+insert into Teaches values('T01','F1','CSE300','CSE B');
+insert into Teaches values('T02','F2','CSE340','CSE B');
+insert into Teaches values('T03','F3','ECE300','CSE B');
+insert into Teaches values('T04','F4','CSE340','CSE A');
+insert into Teaches values('T05','F5','CSE330','CSE A');
+insert into Teaches values('T06','F6','PHY263','CSE A');
+insert into Teaches values('T07','F7','CSE390','CSE B');
+insert into Teaches values('T08','F1','CSE392','CSE B');
+insert into Teaches values('T09','F9','CSE390','CSE A');
+insert into Teaches values('T15','F4','CSE392','CSE A');
+insert into Teaches values('T16','F2','CSE391','CSE B');
+insert into Teaches values('T10','M1','CSE330','CSE B');
+insert into Teaches values('T11','M2','PHY263','CSE B');
+insert into Teaches values('T12','M3','ECE300','CSE A');
+insert into Teaches values('T13','M4','CSE300','CSE A');
+insert into Teaches values('T14','M4','CSE391','CSE A');
+
+insert into Timetable values('TT01','T01','Monday',2);
+insert into Timetable values('TT02','T01','Tuesday',6);
+insert into Timetable values('TT03','T01','Thursday',2);
+insert into Timetable values('TT04','T01','Friday',4);
+
+insert into Timetable values('TT05','T02','Monday',6);
+insert into Timetable values('TT06','T02','Tuesday',1);
+insert into Timetable values('TT07','T02','Wednesday',3);
+insert into Timetable values('TT08','T02','Friday',5);
+
+insert into Timetable values('TT09','T03','Monday',5);
+insert into Timetable values('TT10','T03','Thursday',3);
+insert into Timetable values('TT11','T03','Friday',6);
+
+insert into Timetable values('TT12','T10','Monday',3);
+insert into Timetable values('TT13','T10','Tuesday',2);
+insert into Timetable values('TT14','T10','Wednesday',4);
+insert into Timetable values('TT15','T10','Thursday',4);
+
+insert into Timetable values('TT16','T11','Monday',4);
+insert into Timetable values('TT17','T11','Tuesday',5);
+insert into Timetable values('TT18','T11','Thursday',1);
+
+insert into Timetable values('TT19','T07','Wednesday',1);
+insert into Timetable values('TT20','T07','Wednesday',2);
+insert into Timetable values('TT21','T07','Thursday',5);
+insert into Timetable values('TT22','T07','Thursday',6);
+
+insert into Timetable values('TT23','T08','Tuesday',3);
+insert into Timetable values('TT24','T08','Tuesday',4);
+
+insert into Timetable values('TT25','T04','Monday',3);
+insert into Timetable values('TT26','T04','Tuesday',2);
+insert into Timetable values('TT27','T04','Wednesday',3);
+insert into Timetable values('TT28','T04','Thursday',2);
+
+insert into Timetable values('TT29','T12','Monday',4);
+insert into Timetable values('TT30','T12','Tuesday',1);
+insert into Timetable values('TT31','T12','Friday',4);
+
+insert into Timetable values('TT32','T05','Monday',5);
+insert into Timetable values('TT33','T05','Tuesday',4);
+insert into Timetable values('TT34','T05','Wednesday',5);
+insert into Timetable values('TT35','T05','Thursday',3);
+
+insert into Timetable values('TT36','T06','Monday',6);
+insert into Timetable values('TT37','T06','Wednesday',6);
+insert into Timetable values('TT38','T06','Thursday',4);
+
+insert into Timetable values('TT39','T13','Tuesday',3);
+insert into Timetable values('TT40','T13','Wednesday',4);
+insert into Timetable values('TT41','T13','Thursday',1);
+insert into Timetable values('TT42','T13','Friday',6);
+
+insert into Timetable values('TT43','T09','Monday',1);
+insert into Timetable values('TT44','T09','Monday',2);
+insert into Timetable values('TT45','T09','Wednesday',1);
+insert into Timetable values('TT46','T09','Wednesday',2);
+
+insert into Timetable values('TT47','T14','Tuesday',5);
+insert into Timetable values('TT48','T14','Tuesday',6);
+
+insert into Timetable values('TT49','T15','Thursday',5);
+insert into Timetable values('TT50','T15','Thursday',6);
+
+insert into Timetable values('TT51','T16','Wednesday',5);
+insert into Timetable values('TT52','T16','Wednesday',6);
+
